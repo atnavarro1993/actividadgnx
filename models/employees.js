@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const employeeFields = {
-    dni:Int8Array,
+    dni:Number,
     birth_date:Date,
     first_name:String,
     last_name:String,

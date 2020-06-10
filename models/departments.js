@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const departmentFields ={
-    name:String
+    dept_name:String
 };
 
 const departmentSchema = new Schema(departmentFields);

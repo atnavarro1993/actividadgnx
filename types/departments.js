@@ -1,6 +1,6 @@
 const gnx = require("@simtlix/gnx");
-const Department = require('../models/departments').Department;
-const graphql = require('graphql');
+const Department = require("../models/departments").Department;
+const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLID, GraphQLString } = graphql;
 
 const DepartmentsType = new GraphQLObjectType({
@@ -12,6 +12,5 @@ const DepartmentsType = new GraphQLObjectType({
   }),
 });
 
-gnx.connect(Department,DepartmentsType,'department','departments')
-
-module.exports= DepartmentsType;
+gnx.connect(Department, DepartmentsType, "department", "departments");
+module.exports = DepartmentsType;
