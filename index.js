@@ -10,11 +10,11 @@ mongoose.connection.once('open',()=>{
     console.log('connected to database');
 });
 
-/*
+
 const types = require('./types');
 const includedTypes = Object.values(types);
 const schema = gnx.createSchema(includedTypes,includedTypes);
-*/
+
 
 app.use('/graphql',graphqlHTTP({
     schema,
