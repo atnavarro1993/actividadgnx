@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@simtlix/gnx": "^1.0.3",
+    "@simtlix/gnx": "^2.4.1",
     "express": "^4.17.1",
     "express-graphql": "^0.7.1",
     "graphql": "^14.5.8",

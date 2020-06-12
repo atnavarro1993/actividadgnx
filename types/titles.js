@@ -1,34 +1,40 @@
-const gnx = require('@simtlix/gnx');
+const gnx = require("@simtlix/gnx");
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt } = graphql;
-
-const Title = require('../models/titles').Title;
+const { DateValidator } = require("../validators/time.validator");
+const {CantHavetwoTitlesInSameTimeFrame} = require('../validators/title.validator');
+const Title = require("../models/titles").Title;
 const Employees = require("../models/employees").Employees;
-const employeeType = require('./epmloyees');
+const employeeType = require("./epmloyees");
 
 const titlesType = new GraphQLObjectType({
-    name:"titleType",
-    description:"represents titles",
-    fields:()=>({
-        id:{type:GraphQLID},
-        employee:{
-            type:employeeType,
-            extensions:{
-                relation:{
-                    connectionField:"empID",
-                    embedded: false
-                }
-            },
-            resolve(parent,args){
-                return Employees.findById(parent.empID)
-            }
+  name: "titleType",
+  description: "represents titles",
+  extensions: {
+    validations: {
+      CREATE: [DateValidator,CantHavetwoTitlesInSameTimeFrame]
+    },
+  },
+  fields: () => ({
+    id: { type: GraphQLID },
+    employee: {
+      type: employeeType,
+      extensions: {
+        relation: {
+          connectionField: "empID",
+          embedded: false,
         },
-        title:{type:GraphQLString},
-        from_date:{type:GraphQLString},
-        to_date:{type:GraphQLString}
-    })
-})
+      },
+      resolve(parent, args) {
+        return Employees.findById(parent.empID);
+      },
+    },
+    title: { type: GraphQLString },
+    from_date: { type: GraphQLString },
+    to_date: { type: GraphQLString },
+  }),
+});
 
-gnx.connect(Title,titlesType,'Title','Titles');
+gnx.connect(Title, titlesType, "Title", "Titles");
 
-module.exports=titlesType;
+module.exports = titlesType;

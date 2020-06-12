@@ -1,6 +1,7 @@
 const gnx = require("@simtlix/gnx");
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLID, GraphQLList } = graphql;
+const { GraphQLObjectType, GraphQLID, GraphQLList, GraphQLString } = graphql;
+const { DateValidator } = require("../validators/time.validator");
 
 const DeptEmployees = require("../models/dept_employee").DeptEmployee;
 const Employees = require("../models/employees").Employees;
@@ -12,6 +13,13 @@ const departmentType = require("./departments");
 const deptEmployeeType = new GraphQLObjectType({
   name: "deptEmployeeType",
   description: "represents deptEmlpoyee",
+  extensions:{
+    validations:{
+      'CREATE':[
+        DateValidator
+      ]
+    }
+  },
   fields: () => ({
     id: { type: GraphQLID },
     department: {
@@ -33,10 +41,13 @@ const deptEmployeeType = new GraphQLObjectType({
             embedded: false,
           },
         },
+
+        resolve(parent, args) {
+          return Employees.find({ empID: parent.id });
+        },
       },
-      resolve(parent, args) {
-        return Employees.find({ empID: parent.id });
-      },
+      from_date: { type: GraphQLString },
+      to_date: { type: GraphQLString },
     },
   }),
 });

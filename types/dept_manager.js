@@ -7,6 +7,7 @@ const {
   GraphQLInt,
   GraphQLList,
 } = graphql;
+const { DateValidator } = require("../validators/time.validator");
 
 const DeptManagers = require("../models/dept_manager").DeptManager;
 const Employees = require("../models/employees").Employees;
@@ -18,6 +19,13 @@ const departmentType = require("./departments");
 const deptManagetType = new GraphQLObjectType({
   name: "deptManagerType",
   description: "represents deptManager",
+  extensions:{
+    validations:{
+      'CREATE':[
+        DateValidator
+      ]
+    }
+  },
   fields: () => ({
     id: { type: GraphQLID },
     department: {
@@ -41,9 +49,11 @@ const deptManagetType = new GraphQLObjectType({
         },
       },
       resolve(parent, args) {
-        return Employees.find({ "empID": parent.id });
+        return Employees.find({ empID: parent.id });
       },
     },
+    from_date: { type: GraphQLString },
+    to_date: { type: GraphQLString },
   }),
 });
 

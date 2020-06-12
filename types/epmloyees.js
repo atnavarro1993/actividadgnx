@@ -3,10 +3,20 @@ const Employees = require("../models/employees").Employees;
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt } = graphql;
 const SexTypeEnum = require("../enums/sex.enum");
+const {
+  CantRepeatDni,
+  EmployeeMustHaveLegalAge,
+} = require("../validators/employee.validator");
 
 const EmployeesType = new GraphQLObjectType({
   name: "employeeType",
   description: "represents employees",
+  extensions: {
+    validations: {
+      CREATE: [CantRepeatDni, EmployeeMustHaveLegalAge],
+      UPDATE: [CantRepeatDni],
+    },
+  },
   fields: () => ({
     id: { type: GraphQLID },
     dni: { type: GraphQLInt },
