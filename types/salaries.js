@@ -2,6 +2,7 @@ const gnx = require("@simtlix/gnx");
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt } = graphql;
 const { DateValidator } = require("../validators/time.validator");
+const { GraphQLDate } = require('graphql-iso-date');
 
 const Salaries = require("../models/salaries").Salary;
 const Employees = require("../models/employees").Employees;
@@ -32,8 +33,8 @@ const SalariesType = new GraphQLObjectType({
       },
     },
     salary: { type: GraphQLInt },
-    from_date: { type: GraphQLString },
-    to_date: { type: GraphQLString },
+    from_date: { type: GraphQLDate },
+    to_date: { type: GraphQLDate },
   }),
 });
 

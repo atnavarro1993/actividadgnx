@@ -6,7 +6,9 @@ const SexTypeEnum = require("../enums/sex.enum");
 const {
   CantRepeatDni,
   EmployeeMustHaveLegalAge,
+  CantDeleteEmployeeWithSalary,
 } = require("../validators/employee.validator");
+const { GraphQLDate } = require("graphql-iso-date");
 
 const EmployeesType = new GraphQLObjectType({
   name: "employeeType",
@@ -15,15 +17,16 @@ const EmployeesType = new GraphQLObjectType({
     validations: {
       CREATE: [CantRepeatDni, EmployeeMustHaveLegalAge],
       UPDATE: [CantRepeatDni],
+      DELETE:[CantDeleteEmployeeWithSalary]
     },
   },
   fields: () => ({
     id: { type: GraphQLID },
     dni: { type: GraphQLInt },
-    birth_date: { type: GraphQLString },
+    birth_date: { type: GraphQLDate },
     first_name: { type: GraphQLString },
     last_name: { type: GraphQLString },
-    hire_date: { type: GraphQLString },
+    hire_date: { type: GraphQLDate },
     gender: { type: SexTypeEnum },
   }),
 });

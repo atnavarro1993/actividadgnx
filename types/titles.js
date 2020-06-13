@@ -6,7 +6,7 @@ const {CantHavetwoTitlesInSameTimeFrame} = require('../validators/title.validato
 const Title = require("../models/titles").Title;
 const Employees = require("../models/employees").Employees;
 const employeeType = require("./epmloyees");
-
+const { GraphQLDate } = require('graphql-iso-date');
 const titlesType = new GraphQLObjectType({
   name: "titleType",
   description: "represents titles",
@@ -30,8 +30,8 @@ const titlesType = new GraphQLObjectType({
       },
     },
     title: { type: GraphQLString },
-    from_date: { type: GraphQLString },
-    to_date: { type: GraphQLString },
+    from_date: { type: GraphQLDate },
+    to_date: { type: GraphQLDate },
   }),
 });
 
