@@ -16,7 +16,7 @@ const EmployeesType = new GraphQLObjectType({
   extensions: {
     validations: {
       CREATE: [CantRepeatDni, EmployeeMustHaveLegalAge],
-      UPDATE: [CantRepeatDni],
+      UPDATE: [CantRepeatDni,EmployeeMustHaveLegalAge],
       DELETE:[CantDeleteEmployeeWithSalary]
     },
   },

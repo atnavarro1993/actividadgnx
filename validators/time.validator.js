@@ -1,6 +1,6 @@
 const gnx = require("@simtlix/gnx");
 const GNXError = gnx.GNXError;
-const { Title } = require('../models/titles');
+
 const DateValidator = {
     validate: async function (typeName, originalObj, materializeObj){
         if(materializeObj.from_date>=materializeObj.to_date){

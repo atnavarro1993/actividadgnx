@@ -27,6 +27,7 @@ const deptManagetType = new GraphQLObjectType({
   extensions: {
     validations: {
       CREATE: [DateValidator, ManagerCantHaveOverlapingTimeFrames],
+      UPDATE: [DateValidator, ManagerCantHaveOverlapingTimeFrames],
       DELETE: [CantDeleteWithChildManagers],
     },
   },

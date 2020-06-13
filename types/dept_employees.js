@@ -20,6 +20,7 @@ const deptEmployeeType = new GraphQLObjectType({
   extensions: {
     validations: {
       CREATE: [DateValidator, EmployeesCantBeOnTwoDeptsAtSameTime],
+      UPDATE: [DateValidator, EmployeesCantBeOnTwoDeptsAtSameTime],
       DELETE:[CantDeleteWithChildEmployees]
     },
   },
