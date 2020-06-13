@@ -1,12 +1,13 @@
 const gnx = require("@simtlix/gnx");
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt } = graphql;
-const { DateValidator } = require("../validators/time.validator");
-const {CantHavetwoTitlesInSameTimeFrame} = require('../validators/title.validator');
+const { GraphQLObjectType, GraphQLID, GraphQLString} = graphql;
+
 const Title = require("../models/titles").Title;
 const Employees = require("../models/employees").Employees;
 const employeeType = require("./epmloyees");
 const { GraphQLDate } = require('graphql-iso-date');
+const { DateValidator } = require("../validators/time.validator");
+const {CantHavetwoTitlesInSameTimeFrame} = require('../validators/title.validator');
 const titlesType = new GraphQLObjectType({
   name: "titleType",
   description: "represents titles",

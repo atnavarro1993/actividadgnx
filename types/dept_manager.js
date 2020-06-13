@@ -3,9 +3,6 @@ const graphql = require("graphql");
 const {
   GraphQLObjectType,
   GraphQLID,
-  GraphQLString,
-  GraphQLInt,
-  GraphQLList,
 } = graphql;
 const { DateValidator } = require("../validators/time.validator");
 const { GraphQLDate } = require("graphql-iso-date");

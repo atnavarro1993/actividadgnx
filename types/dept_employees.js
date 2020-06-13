@@ -1,6 +1,6 @@
 const gnx = require("@simtlix/gnx");
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLID, GraphQLList, GraphQLString } = graphql;
+const { GraphQLObjectType, GraphQLID } = graphql;
 const { DateValidator } = require("../validators/time.validator");
 const { GraphQLDate } = require("graphql-iso-date");
 

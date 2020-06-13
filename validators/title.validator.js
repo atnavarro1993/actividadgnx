@@ -3,8 +3,6 @@ const GNXError = gnx.GNXError;
 
 
 const { Title } = require("../models/titles");
-const { DeptEmployee } = require("../models/dept_employee");
-
 const CantHavetwoTitlesInSameTimeFrame = {
   validate: async function (typeName, originalObj, materializeObj) {
     const title = await Title.find({ empID: materializeObj.empID });

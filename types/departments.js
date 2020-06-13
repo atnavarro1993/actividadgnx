@@ -7,7 +7,6 @@ const {
   CantDeleteIfChilds,
 } = require("../validators/dept.validator");
 
-const { DeptEmployee } = require("../models/dept_employee");
 const DepartmentsType = new GraphQLObjectType({
   name: "departmentType",
   description: "represents departments",
