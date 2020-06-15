@@ -1,6 +1,6 @@
 const gnx = require("@simtlix/gnx");
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLID, GraphQLString} = graphql;
+const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLNonNull} = graphql;
 
 const Title = require("../models/titles").Title;
 const Employees = require("../models/employees").Employees;
@@ -30,9 +30,9 @@ const titlesType = new GraphQLObjectType({
         return Employees.findById(parent.empID);
       },
     },
-    title: { type: GraphQLString },
-    from_date: { type: GraphQLDate },
-    to_date: { type: GraphQLDate },
+    title: { type: GraphQLNonNull (GraphQLString) },
+    from_date: { type: GraphQLNonNull( GraphQLDate) },
+    to_date: { type: GraphQLNonNull( GraphQLDate) },
   }),
 });
 

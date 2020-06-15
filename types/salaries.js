@@ -1,6 +1,6 @@
 const gnx = require("@simtlix/gnx");
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt } = graphql;
+const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt ,GraphQLNonNull} = graphql;
 const { DateValidator } = require("../validators/time.validator");
 const { GraphQLDate } = require("graphql-iso-date");
 
@@ -32,9 +32,9 @@ const SalariesType = new GraphQLObjectType({
         return Employees.findById(parent.empID);
       },
     },
-    salary: { type: GraphQLInt },
-    from_date: { type: GraphQLDate },
-    to_date: { type: GraphQLDate },
+    salary: { type: GraphQLNonNull (GraphQLInt) },
+    from_date: { type:  GraphQLNonNull( GraphQLDate)},
+    to_date: { type: GraphQLNonNull( GraphQLDate) },
   }),
 });
 

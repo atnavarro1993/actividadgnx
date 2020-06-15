@@ -1,7 +1,7 @@
 const gnx = require("@simtlix/gnx");
 const Department = require("../models/departments").Department;
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLID, GraphQLString } = graphql;
+const { GraphQLObjectType, GraphQLID, GraphQLString,GraphQLNonNull } = graphql;
 const {
   CantRepeatName,
   CantDeleteIfChilds,
@@ -19,7 +19,7 @@ const DepartmentsType = new GraphQLObjectType({
   },
   fields: () => ({
     id: { type: GraphQLID },
-    dept_name: { type: GraphQLString }
+    dept_name: { type: GraphQLNonNull( GraphQLString) }
   }),
 });
 
